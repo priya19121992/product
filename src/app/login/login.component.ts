@@ -33,11 +33,10 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.invalid) {
       return;
     }
-    console.log(this.loginJson.length)
     for(let i=0; i<this.loginJson.length;i++) {
       if(this.loginJson[i].username===this.loginForm.value.username){
         if(this.loginJson[i].password===this.loginForm.value.password){
-          this.router.navigateByUrl('/productDetail');
+          this.router.navigateByUrl('/cartProduct');
         }
       }
     }
