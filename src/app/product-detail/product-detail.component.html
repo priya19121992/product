@@ -7,7 +7,7 @@
             <th>Action</th>
         </thead>
         <tbody>
-            <tr *ngFor="let item of __allprdts | paginate: { itemsPerPage: 10, currentPage: p } | filter : __searchedProduct | sortBy : sortByOption">
+            <tr *ngFor="let item of allprdts | paginate: { itemsPerPage: 10, currentPage: p } | filter : searchedProduct | sortBy : sortByOption">
                 <td>
                     {{item.product_name}}
                 </td>
@@ -23,7 +23,7 @@
             </tr>
         </tbody>
     </table>
-    <div class="text-right">
+    <div class="text-right" *ngIf="allprdts?.length>0">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 

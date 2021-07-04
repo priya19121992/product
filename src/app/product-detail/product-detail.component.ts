@@ -9,19 +9,19 @@ import {CartService} from '../services/cart.service';
 })
 export class ProductDetailComponent implements OnInit {
  
-@Input("allProductList") __allprdts: any;
-@Input("searchedText") __searchedProduct: string='';
+@Input("allProductList") allprdts: any;
+@Input("searchedText") searchedProduct: string='';
 @Input("sortingBy") sortByOption: string='';  
 @Output() refresh:EventEmitter<boolean> = new EventEmitter(); 
 
 constructor(public commonService: CommonService, public cart: CartService) {}
     
 ngOnInit(){
-      console.log(this.__allprdts)
+      console.log(this.allprdts)
       this.sortByOption = 'product_name';
     }
     addToCart(productId,productQty){    
-      this.cart.allItems = this.__allprdts;
+      this.cart.allItems = this.allprdts;
       this.cart.addToCart(productId,productQty,'');
       this.refresh.emit(true);
     }
