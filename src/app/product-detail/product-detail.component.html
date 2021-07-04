@@ -1,1 +1,49 @@
-<p>product-detail works!</p>
+<!-- <div class="row">
+    <div class="col-md-4" *ngFor="let item of __allprdts | filter : __searchedProduct | sortBy : sortByOption">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title font-weight-bold">{{item.product_name}}</h6>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="card-text"> <small> {{item.product_weight}} </small></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-right"> <small> Rs {{item.product_price}} </small> </p>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-primary" (click)="addToCart(item.p_id,1,'')">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="col-xl-12 product_table my-3 container">
+    <table class="w-100">
+        <thead>
+            <th>Product Name</th>
+            <th>Product Weight</th>
+            <th>Price</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of __allprdts | paginate: { itemsPerPage: 10, currentPage: p } | filter : __searchedProduct | sortBy : sortByOption">
+                <td>
+                    {{item.product_name}}
+                </td>
+                <td>
+                    {{item.product_weight}}
+                </td>
+                <td>
+                    {{item.product_price}}
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-primary" (click)="addToCart(item.p_id,1,'')">Add to Cart</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-right">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+</div>

@@ -1,1 +1,84 @@
-<p>cart-product works!</p>
+<div class="container">
+    <div class="form-row align-items-center">
+        <div class="col-md-9">
+            <div class="input-group mb-4 mt-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Search Products</div>
+                </div>
+                <input [(ngModel)]="searchText" class="form-control"
+                    placeholder="Please enter any product name to search ">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class=" mb-4 mt-2">
+                <select class="form-control" [(ngModel)]="sortOption">
+                    <option value="product_name|asc">Sort By Name (A to Z)</option>
+                    <option value="product_name|desc">Sort By Name (Z to A)</option>
+                    <option value="product_price|lth">Sort By Price (Low to High)</option>
+                    <option value="product_price|htl">Sort By Price (High to Low)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <app-product-detail (refresh)="ref($event)" [allProductList]="products.data" [searchedText]="searchText"
+                [sortingBy]="sortOption">
+            </app-product-detail>
+        </div>
+        <div class="col-md-5">
+            <div class="card text-center">
+                <div class="card-header">
+                    Your Cart Items
+                    <button type="button" class="btn btn-sm btn-warning float-right">
+                        Total items <span class="badge badge-light">{{cart.cartItemsList.length}}</span>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger mr-2 float-right" (click)="emptyCart()"
+                        *ngIf="cart.cartItemsList && cart.cartTotal">
+                        Empty Cart
+                    </button>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                            </tr>
+                            <tr *ngFor="let itm of cart.cartItemsList">
+                                <td class="text-left">{{itm.name}}</td>
+                                <td>{{itm.price/itm.qty}} x</td>
+                                <td class="w30">
+                                    <div class="input-group input-group-sm mb-3">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-info" type="button"
+                                                (click)="changeQty(itm.pid,1,'')">+</button>
+                                        </div>
+                                        <input type="text" class="form-control text-center" value="{{itm.qty}}" #qtyRef
+                                            (keyup)="changeQty(itm.pid,qtyRef.value,'replace')">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-danger" type="button"
+                                                (click)="changeQty(itm.pid,-1,'')">-</button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{itm.price}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a disabled class="btn btn-sm btn-primary">Checkout</a>
+                </div>
+                <div class="card-footer text-muted font-weight-bold">
+                    Total : Rs. {{cart.cartTotal}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
