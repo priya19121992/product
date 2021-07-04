@@ -1,0 +1,32 @@
+.setBg {
+    background-image: linear-gradient(to right top, #26c8c8, #00a8cf, #0084d4, #005bc9, #2a25a3);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+.pageContainer {
+    background-color: #fff;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.loginTitle {
+    background-color: #072879;
+    color: #fff;
+    width: 60%;
+    padding: 10px;
+    font-size: 23px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    margin-top: 30px;
+}
+
+.formGroupStyle {
+    height: 90px;
+}
+
+.mt7cent {
+    margin-top: 7%;
+}
+
