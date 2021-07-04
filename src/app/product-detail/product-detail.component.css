@@ -1,0 +1,21 @@
+.product_table table thead {
+    background-color: #6b6b6f;
+    color: #fff;
+}
+
+.product_table table{
+    border: 1px solid #ccc;
+}
+
+.product_table table tbody tr td,
+.product_table table thead th   {
+    padding: 5px;
+}
+
+.product_table table tbody tr:hover {
+    background-color: #ccc;
+}
+
+.product_table table tbody tr:nth-child(odd) {
+    background-color: #e8e8e8;
+}
