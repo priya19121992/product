@@ -1,3 +1,32 @@
+<button class="btn btn-sm btn-primary ml-3" (click)="navigateToCreate()">Add Product</button>
+
+<div *ngIf="showCreateProduct" class="create_class mt-3">
+<h4 align="center" *ngIf="!isEdit">Create Product</h4>
+<h4 align="center" *ngIf="isEdit">Update Product</h4>
+<div class="col-md-4 m-5 pb-5">
+  <form [formGroup]="createProductForm">
+    <div class="form-group">
+      <label>Product Name * : </label>
+      <input type="text" class="form-control" formControlName="product_name" placeholder="Enter product name">
+      <span class="warning" *ngIf="createProductForm.controls['product_name'].errors?.required">
+        *Product name is required </span>
+    </div>
+    <div class="form-group">
+      <label>Product Weight : </label>
+      <input type="text" class="form-control" formControlName="product_weight" placeholder="Enter product weight">
+    </div>
+
+    <div class="form-group">
+      <label>Product Price : </label>
+      <input type="number" class="form-control" formControlName="product_price" placeholder="Enter Product Price">
+    </div>
+    <button type="reset" class="btn btn-warning mr-1">Reset</button>
+    <button type="button" [disabled]="!createProductForm.valid" class="btn btn-primary" *ngIf="!isEdit" (click)="createProd()">Create Product</button>
+    <button type="button" [disabled]="!createProductForm.valid" class="btn btn-primary" *ngIf="isEdit" (click)="updateProductDetail(createProductForm.value)">Update Product</button>
+  </form>
+</div>
+</div>
+
 <div class="col-xl-12 product_table my-3 container">
     <table class="w-100">
         <thead>
@@ -7,7 +36,7 @@
             <th>Action</th>
         </thead>
         <tbody>
-            <tr *ngFor="let item of allprdts | paginate: { itemsPerPage: 10, currentPage: p } | filter : searchedProduct | sortBy : sortByOption">
+            <tr *ngFor="let item of allprdts | paginate: { itemsPerPage: 10, currentPage: p } | filter : searchedProduct; index as i">
                 <td>
                     {{item.product_name}}
                 </td>
@@ -18,7 +47,9 @@
                     {{item.product_price}}
                 </td>
                 <td>
-                    <button class="btn btn-sm btn-primary" (click)="addToCart(item.p_id,1,'')">Add to Cart</button>
+                    <button class="btn btn-sm btn-primary" (click)="editProd(item, i)">Update</button>
+                    <button class="btn btn-sm btn-danger ml-2" (click)="deleteProdConfirm(i)"
+                    type="button" data-toggle="modal" data-target="#myModal">Delete</button>
                 </td>
             </tr>
         </tbody>
@@ -27,4 +58,25 @@
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 
+</div>
+
+<div *ngIf="showDeleteDialog">
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Delete Confirmation</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          Are you sure want to delete selected product?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteSelectedRow()">Yes</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 </div>

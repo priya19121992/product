@@ -19,3 +19,18 @@
 .product_table table tbody tr:nth-child(odd) {
     background-color: #e8e8e8;
 }
+
+.create_class {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.create_class h4 {
+    color: #676767;
+    background: #e2e0e0;
+    padding: 10px;
+}
+
+.warning {
+    color: #dc0404;
+}

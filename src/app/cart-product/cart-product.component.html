@@ -9,7 +9,7 @@
                     placeholder="Please enter any product name to search ">
             </div>
         </div>
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
             <div class=" mb-4 mt-2">
                 <select class="form-control" [(ngModel)]="sortOption">
                     <option value="product_name|asc">Sort By Name (A to Z)</option>
@@ -18,15 +18,15 @@
                     <option value="product_price|htl">Sort By Price (High to Low)</option>
                 </select>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-9">
             <app-product-detail (refresh)="ref($event)" [allProductList]="products.data" [searchedText]="searchText"
                 [sortingBy]="sortOption">
             </app-product-detail>
         </div>
-        <div class="col-md-5">
+        <!-- <div class="col-md-5">
             <div class="card text-center">
                 <div class="card-header">
                     Your Cart Items
@@ -78,6 +78,6 @@
                     Total : Rs. {{cart.cartTotal}}
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
